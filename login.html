@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      .carousel-item {
+        width: 100%;
+        height: 80vh;
+      }
+
+      .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+      }
+
+      .info-section {
+        padding: 50px 0;
+      }
+
+      .info-card {
+        background-color: #f9f9f9;
+        border: none;
+        transition: transform 0.3s;
+      }
+
+      .info-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .info-icon {
+        font-size: 50px;
+        color: #ff4d4d;
+      }
+
+      /* Styling untuk login form */
+      body {
+        background-color: brown;
+      }
+
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .login {
+        width: 380px;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .login-header header {
+        color: #333;
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .input .input-field {
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        padding: 0 20px;
+        margin-bottom: 15px;
+        border-radius: 30px;
+        border: 1px solid #ddd;
+        box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.05);
+        outline: none;
+        transition: 0.3s;
+      }
+
+      ::placeholder {
+        font-weight: 500;
+        color: #aaa;
+      }
+
+      .input-field:focus {
+        border-color: #ffffff;
+        box-shadow: 0 0 10px #470000cc;
+      }
+
+      .forgot {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+
+      section {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #555;
+      }
+
+      #check {
+        margin-right: 10px;
+      }
+
+      .input-submit {
+        margin-bottom: 15px;
+      }
+
+      .input-submit a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .submit-btn {
+        width: 100%;
+        height: 50px;
+        background: #a9bab7;
+        border: none;
+        border-radius: 30px;
+        transition: 0.3s;
+      }
+
+      .submit-btn:hover {
+        background: rgb(63, 122, 167);
+        transform: scale(1.05, 1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white px-4 border-bottom"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand fs-1" href="#"
+          ><span class="text-danger">Darah</span>Peduli</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 text-center">
+            <li class="nav-item">
+              <a class="nav-link" href="beranda.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="beranda.html">Kembali</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="login-container">
+      <div class="login">
+        <div class="login-header">
+          <header>Login</header>
+        </div>
+        <div class="input">
+          <input
+            type="text"
+            class="input-field form-control"
+            placeholder="No. Donor"
+            id="noDonor"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="input">
+          <input
+            type="password"
+            class="input-field form-control"
+            placeholder="Password"
+            id="password"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="forgot">
+          <section>
+            <input type="checkbox" id="check" />
+            <label for="check">Ingatkan Saya</label>
+          </section>
+        </div>
+        <div class="input-submit">
+          <button class="submit-btn btn btn-secondary" id="login">Login</button>
+        </div>
+        <div class="input-submit">
+          <button class="submit-btn btn btn-secondary">
+            <a href="daftar.html">Daftar</a>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="info0donor" style="margin-top: 20px; display: none">
+      <p><strong>NOMOR DONOR : </strong><span id="nomorDonor"></span></p>
+      <p><strong>Password : </strong><span id="password"></span></p>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      const statusLogin =
+        JSON.parse(localStorage.getItem("SESSION_ID")) ?? false;
+      if (statusLogin) {
+        window.location.href = "beranda.html";
+      }
+
+      const User = JSON.parse(localStorage.getItem("User")) || [];
+
+      document
+        .getElementById("login")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+
+          const nomorDonor = document.getElementById("noDonor").value;
+          const kataSandi = document.getElementById("password").value;
+
+          const findDonorId = User.find((User) => User.noDonor == nomorDonor);
+
+          if (findDonorId && findDonorId.password == kataSandi) {
+            localStorage.setItem("SESSION_ID", findDonorId.id);
+            window.location.href = "beranda.html";
+          } else {
+            alert("Nomor Donor atau Kata Sandi salah!");
+          }
+        });
+    </script>
+  </body>
+</html>

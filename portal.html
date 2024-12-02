@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #9f1c1c;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .info-section {
+      background-color: #9f1c1c !important;
+      padding: 50px 0;
+    }
+
+    .info-card {
+      background-color: #f9f9f9;
+      border: none;
+      transition: transform 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-icon {
+      font-size: 50px;
+      color: #ff4d4d;
+    }
+
+    a {
+      text-decoration: none;
+      color: red;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 border-bottom">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-1" href="#"><span class="text-danger">Darah</span>Peduli</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 text-center">
+          <li class="nav-item">
+            <a class="nav-link " href="beranda.html">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="beranda.html">Stok Darah</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Informasi Utama -->
+  <section class="info-section bg-light" id="informasi-utama">
+    <div class="container text-center">
+      <h2 class="mb-4">PORTAL</h2>
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="card info-card p-4">
+            <div class="info-icon mb-3">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <a href="profil-pendonor.html">PROFIL</a>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card info-card p-4">
+            <div class="info-icon mb-3">
+              <i class="bi bi-geo-alt-fill"></i>
+            </div>
+            <a href="lokasi-donor.html">LOKASI DONOR</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card info-card p-4">
+            <div class="info-icon mb-3">
+              <i class="bi bi-heart-pulse"></i>
+            </div>
+            <a href="riwayat-donor.html">RIWAYAT DONOR</a>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card info-card p-4">
+            <div class="info-icon mb-3">
+              <i class="bi bi-heart-pulse"></i>
+            </div>
+            <a href="jadwal-donor.html">JADWAL DONOR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/bootstrap.min.js">
+    const jadwalDonorLink = document.querySelector('a[href="jadwal-donor.html"]');
+
+    jadwalDonorLink.addEventListener('click', function (event) {
+      const lokasiDonor = localStorage.getItem('lokasiDonor');
+
+      
+      if (!lokasiDonor) {
+        event.preventDefault(); 
+        alert("Belum ada lokasi donor yang dipilih. Silakan pilih lokasi donor terlebih dahulu.");
+        window.location.href = "lokasi-donor.html";
+      }
+    });
+  </script>
+</body>
+
+</html>

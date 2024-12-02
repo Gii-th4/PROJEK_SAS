@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lembar-isian</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: brown;
+        }
+
+        .container {
+            max-width: 900px;
+            /* Lebar form pendaftaran */
+            margin-top: 30px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .card-header {
+            background-color: brown;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group {
+            display: flex;
+        }
+
+        .form-group label {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Lembar Isian</h2>
+            </div>
+            <form id="lembarIsian">
+                <div class="form-group">
+                    <p>1. Apakah anda merasa sehat hari ini ?</p>
+                    <label>
+                        <input type="radio" name="sehat" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="sehat" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>2. Apakah anda sedang mengonsumsi obat tertentu ?</p>
+                    <label>
+                        <input type="radio" name="obat" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="obat" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>3. Apakah anda melakukan operasi dalam 6 bulan terakhir ?</p>
+                    <label>
+                        <input type="radio" name="operasi" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="operasi" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>4. Apakah anda pernah menerima tranfusi darah ?</p>
+                    <label>
+                        <input type="radio" name="tranfusi" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="tranfusi" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>5. Apakah anda sedang mengalami demam, batuk / flu ?</p>
+                    <label>
+                        <input type="radio" name="penyakit" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="penyakit" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>6. Apakah anda memiliki riwayat penyakit menular seksual ?</p>
+                    <label>
+                        <input type="radio" name="pms" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="pms" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>7. Apakah anda sudah cukup tidur (6 jam sebelumnya) ?</p>
+                    <label>
+                        <input type="radio" name="tidur" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="tidur" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>8. Apakah anda sedang merasa lemas/pusing ?</p>
+                    <label>
+                        <input type="radio" name="pusing" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="pusing" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>9. Apakah anda memiliki tekanan darah yang normal ?</p>
+                    <label>
+                        <input type="radio" name="tekanan" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="tekanan" value="Tidak"> Tidak
+                    </label>
+                </div>
+                <div class="form-group">
+                    <p>10. Apakah anda bersedia mengikuti panduan dan aturan dari petugas donor darah ?</p>
+                    <label>
+                        <input type="radio" name="petugas" value="Ya"> Ya
+                    </label>
+                    <label>
+                        <input type="radio" name="petugas" value="Tidak"> Tidak
+                    </label>
+                </div>
+
+                <button id="simpan" class="btn btn-primary" type="button">Simpan</button>
+                <button id="batal" class="btn btn-danger" type="button">Batal</button>
+            </form>
+        </div>
+
+        <script src="js/bootstrap.min.js"></script>
+
+        <script>
+            // Halaman lembar-isian.html
+            window.onload = function () {
+                const lokasiDonor = localStorage.getItem('lokasiDonor');
+                if (!lokasiDonor) {
+                    // Jika lokasi donor tidak ada, arahkan kembali ke halaman lokasi donor
+                    window.location.href = 'lokasi-donor.html';
+                }
+            }
+            document.getElementById('simpan').addEventListener('click', function (event) {
+                event.preventDefault(); // Mencegah form reload halaman
+
+                const form = document.querySelector('form'); // Ambil elemen form
+                const inputs = form.querySelectorAll('input[type="radio"]:checked'); // Ambil semua radio yang terpilih
+
+                const jawaban = {};
+                inputs.forEach((input) => {
+                    jawaban[input.name] = input.value; // Simpan nama pertanyaan dan nilai jawaban
+                });
+
+                // Cek jika ada jawaban yang disimpan
+                if (Object.keys(jawaban).length > 0) {
+                    // Simpan ke localStorage
+                    localStorage.setItem('jawabanDonor', JSON.stringify(jawaban));
+
+                    window.location.href = "portal.html";
+                }
+
+                document.getElementById('batal').addEventListener('click', function () {
+                    // Menghapus jawaban dari localStorage
+                    localStorage.removeItem('lokasiDonor');
+                    localStorage.removeItem('jawabanDonor');
+
+                    // Mengarahkan pengguna kembali ke halaman portal
+                    window.location.href = "lokasi-donor.html"; // Ubah sesuai dengan nama halaman lokasi donor
+                });
+            });
+
+        </script>
+
+
+
+</body>
+
+</html>

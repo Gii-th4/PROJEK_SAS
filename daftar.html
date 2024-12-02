@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: brown;
+    }
+
+    .container {
+      max-width: 900px;
+      /* Lebar form pendaftaran */
+      margin-top: 30px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .card-header {
+      background-color: brown;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .btn-danger,
+    .btn-secondary {
+      width: 100%;
+      /* Menggunakan lebar penuh */
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    .form-control {
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+    }
+
+    .form-control:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+
+
+    nav {
+      background-color: #fff;
+    }
+
+    nav .navbar-brand {
+      font-size: 1.5rem;
+    }
+
+    nav .nav-link {
+      font-size: 1.1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigasi -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 border-bottom">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-1" href="#"><span class="text-danger">Darah</span>Peduli</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 text-center">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Informasi Utama</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Form Pendaftaran -->
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2>Daftar Akun Donor</h2>
+      </div>
+      <form>
+        <div class="form-group">
+          <label>Nama Lengkap <span style="color: red;">*</span></label>
+          <input type="text" class="form-control" placeholder="Masukan Nama Lengkap Anda" id="nama" required>
+        </div>
+
+        <div class="form-group">
+          <label>NIK <span style="color: red;">*</span></label>
+          <input type="number" class="form-control" placeholder="Masukan NIK Anda" id="nik" required>
+        </div>
+
+        <div class="form-group">
+          <label>Alamat <span style="color: red;">*</span></label>
+          <input type="text" class="form-control" placeholder="Masukan Alamat Anda" id="alamat" required>
+        </div>
+
+        <div class="form-group">
+          <label>Kabupaten/Kota <span style="color: red;">*</span></label>
+          <input type="text" class="form-control" placeholder="Masukan Kabupaten Anda" id="kabupaten" required>
+        </div>
+
+        <div class="form-group">
+          <label>Kecamatan <span style="color: red;">*</span></label>
+          <input type="text" class="form-control" placeholder="Masukan Kecamatan Anda" id="kecamatan" required>
+        </div>
+
+        <div class="form-group">
+          <label>Kelurahan <span style="color: red;">*</span></label>
+          <input type="text" class="form-control" placeholder="Masukan Kelurahan Anda" id="kelurahan" required>
+        </div>
+
+        <div class="form-group">
+          <label>Jenis Kelamin <span style="color: red;">*</span></label><br>
+
+          <select id="jenis_kelamin" required class="form-control">
+            <option value="">Pilih Gender</option>
+            <option value="Perempuan">Perempuan</option>
+            <option value="Laki-Laki">Laki-Laki</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Tempat Lahir <span style="color: red;">*</span></label>
+              <input type="text" class="form-control" placeholder="Masukan Tempat Lahir Anda" id="tempatLahir" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Tanggal Lahir <span style="color: red;">*</span></label>
+              <input type="date" class="form-control" id="tanggalLahir" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Pekerjaan <span style="color: red;">*</span></label>
+              <select class="form-control" id="pekerjaan" required>
+                <option value="">Pilih Pekerjaan</option>
+                <option value="TNI">TNI</option>
+                <option value="Peg.Negeri">Peg.Negeri</option>
+                <option value="Peg.Swasta">Peg.Swasta</option>
+                <option value="Mahasiswa">Mahasiswa</option>
+                <option value="Pelajar">Pelajar</option>
+                <option value="BUMN">BUMN</option>
+                <option value="Dokter">Dokter</option>
+                <option value="Wiraswasta">Wiraswasta</option>
+                <option value="Wirausaha">Wirausaha</option>
+                <option value="Buruh">Buruh</option>
+                <option value="Lain-lain">Lain-lain</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Gol Darah <span style="color: red;">*</span></label>
+              <select class="form-control" id="golDarah" required>
+                <option value="">Pilih Gol Darah</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="AB">AB</option>
+                <option value="O">O</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email <span style="color: red;">*</span></label>
+          <input type="email" class="form-control" placeholder="Masukan Email Anda" id="email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone <span style="color: red;">*</span></label>
+          <input type="number" class="form-control" placeholder="Masukan Nomor Telepon Anda" id="phone" required>
+        </div>
+
+        <div class="form-group">
+          <label>Kata Sandi <span style="color: red;">*</span></label>
+          <input type="text" class="form-control" placeholder="Masukan Kata Sandi Anda" id="kataSandi" required>
+        </div>
+
+        <div class="form-group">
+          <label>Konfirmasi Kata Sandi <span style="color: red;">*</span></label>
+          <input type="text" class="form-control" placeholder="Masukan Konfirmasi Kata Sandi" id="konfirSandi" required>
+        </div>
+
+        <a href="#" class="btn btn-danger w-100">Batal</a>
+        <button class="btn btn-secondary w-100" id="simpan" type="submit">Simpan</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="modalSukses">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Pendaftaran Berhasil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Nomor Donor Anda: <strong id="nomorDonorDisplay"></strong></p>
+          <p>Kata Sandi Anda: <strong id="kataSandiDisplay"></strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+        
+    </div>
+  </div>
+
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+
+    const statusLogin =
+      JSON.parse(localStorage.getItem("SESSION_ID")) ?? false;
+    if (statusLogin) {
+      window.location.href = "beranda.html";
+    }
+
+    const User = JSON.parse(localStorage.getItem('user')) || [];
+    document.getElementById('simpan').addEventListener('click', function (event) {
+      event.preventDefault();
+      
+      const nomorDonor = Math.floor(1000000 + Math.random()*9000000);
+      
+      const id = User[User.length - 1]?.id + 1 || 1;
+      const nama = document.getElementById('nama').value;
+      const nik = document.getElementById('nik').value;
+      const alamat = document.getElementById('alamat').value;
+      const kabupaten = document.getElementById('kabupaten').value;
+      const kecamatan = document.getElementById('kecamatan').value;
+      const kelurahan = document.getElementById('kelurahan').value;
+      const jenis_kelamin = document.getElementById('jenis_kelamin').value;
+      const tempat_lahir = document.getElementById('tempatLahir').value;
+      const tanggal_lahir = document.getElementById('tanggalLahir').value;
+      const pekerjaan = document.getElementById('pekerjaan').value;
+      const gol_darah = document.getElementById('golDarah').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const kata_sandi = document.getElementById('kataSandi').value;
+      const konfirmasi_kata_sandi = document.getElementById('konfirSandi').value;
+
+      if (kata_sandi !== konfirmasi_kata_sandi) {
+        alert('Password Tidak Sama!');
+        return;
+      }
+
+      const simpanUser = {
+        id,
+        noDonor: nomorDonor,
+        nama,
+        nik,
+        alamat,
+        kabupaten,
+        kecamatan,
+        kelurahan,
+        jenis_kelamin,
+        tempat_lahir,
+        tanggal_lahir,
+        pekerjaan,
+        gol_darah,
+        email,
+        phone,
+        password: kata_sandi
+      };
+
+      User.push(simpanUser);
+
+      localStorage.setItem('User', JSON.stringify(User));
+
+  
+
+      document.getElementById('nomorDonorDisplay').textContent = nomorDonor;
+      document.getElementById('kataSandiDisplay').textContent = document.getElementById('kataSandi').value;
+
+      // modal
+      const modal = new bootstrap.Modal(document.getElementById('modalSukses'));
+      modal.show();
+
+      //arahkan ke halaman login
+      document.querySelector('.btn-primary').addEventListener('click', function () {
+        window.location.href = "login.html";
+      });
+    });
+  </script>
+
+
+
+
+</body>
+
+</html>
+
+</script>

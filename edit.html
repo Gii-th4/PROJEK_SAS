@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit-admin</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: brown;
+        }
+
+        .container {
+            max-width: 900px;
+            /* Lebar form pendaftaran */
+            margin-top: 30px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .card-header {
+            background-color: brown;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .btn-danger,
+        .btn-secondary {
+            width: 100%;
+            /* Menggunakan lebar penuh */
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Edit Akun Donor</h2>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Nama Lengkap <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" placeholder="Masukan Nama Lengkap Anda" id="nama" required>
+                </div>
+
+                <div class="form-group">
+                    <label>NIK <span style="color: red;">*</span></label>
+                    <input type="number" class="form-control" placeholder="Masukan NIK Anda" id="nik" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Alamat <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" placeholder="Masukan Alamat Anda" id="alamat" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Kabupaten/Kota <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" placeholder="Masukan Kabupaten Anda" id="kabupaten"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Kecamatan <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" placeholder="Masukan Kecamatan Anda" id="kecamatan"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Kelurahan <span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" placeholder="Masukan Kelurahan Anda" id="kelurahan"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Jenis Kelamin <span style="color: red;">*</span></label><br>
+
+                    <select id="jenis_kelamin" required class="form-control">
+                        <option value="">Pilih Gender</option>
+                        <option value="Perempuan">Perempuan</option>
+                        <option value="Laki-Laki">Laki-Laki</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Tempat Lahir <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" placeholder="Masukan Tempat Lahir Anda"
+                                id="tempatLahir" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Tanggal Lahir <span style="color: red;">*</span></label>
+                            <input type="date" class="form-control" id="tanggalLahir" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Pekerjaan <span style="color: red;">*</span></label>
+                            <select class="form-control" id="pekerjaan" required>
+                                <option value="">Pilih Pekerjaan</option>
+                                <option value="TNI">TNI</option>
+                                <option value="Peg.Negeri">Peg.Negeri</option>
+                                <option value="Peg.Swasta">Peg.Swasta</option>
+                                <option value="Mahasiswa">Mahasiswa</option>
+                                <option value="Pelajar">Pelajar</option>
+                                <option value="BUMN">BUMN</option>
+                                <option value="Dokter">Dokter</option>
+                                <option value="Wiraswasta">Wiraswasta</option>
+                                <option value="Wirausaha">Wirausaha</option>
+                                <option value="Buruh">Buruh</option>
+                                <option value="Lain-lain">Lain-lain</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Gol Darah <span style="color: red;">*</span></label>
+                            <select class="form-control" id="golDarah" required>
+                                <option value="">Pilih Gol Darah</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="AB">AB</option>
+                                <option value="O">O</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email <span style="color: red;">*</span></label>
+                    <input type="email" class="form-control" placeholder="Masukan Email Anda" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone <span style="color: red;">*</span></label>
+                    <input type="number" class="form-control" placeholder="Masukan Nomor Telepon Anda" id="phone"
+                        required>
+                </div>
+
+
+                <a href="#" class="btn btn-danger w-100">Batal</a>
+                <button class="btn btn-secondary w-100" id="simpan" type="submit">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const index = urlParams.get('id');
+        const users = JSON.parse(localStorage.getItem('User')) || [];
+
+        if (users.length > 0 && index !== null) {
+            const user = users[index];
+                document.getElementById('nama').value = user.nama || '';
+                document.getElementById('nik').value = user.nik || '';
+                document.getElementById('email').value = user.email || '';
+                document.getElementById('phone').value = user.phone || '';
+                document.getElementById('alamat').value = user.alamat || '';
+                document.getElementById('kabupaten').value = user.kabupaten || '';
+                document.getElementById('kecamatan').value = user.kecamatan || '';
+                document.getElementById('kelurahan').value = user.kelurahan || '';
+                document.getElementById('jenis_kelamin').value = user.jenis_kelamin || '';
+                document.getElementById('tempatLahir').value = user.tempatLahir || '';
+                document.getElementById('tanggalLahir').value = user.tanggalLahir || '';
+                document.getElementById('pekerjaan').value = user.pekerjaan || '';
+                document.getElementById('golDarah').value = user.golDarah || '';
+        }else{
+            window.location.href = 'list-pendonor.html';
+        }
+
+        document.getElementById('simpan').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (users.length > 0 && index !== null) {
+                const user = users[index];
+                if (user) {
+                    // Update data user berdasarkan inputan
+                    user.nama = document.getElementById('nama').value;
+                    user.nik = document.getElementById('nik').value;
+                    user.email = document.getElementById('email').value;
+                    user.phone = document.getElementById('phone').value;
+                    user.alamat = document.getElementById('alamat').value;
+                    user.kabupaten = document.getElementById('kabupaten').value;
+                    user.kecamatan = document.getElementById('kecamatan').value;
+                    user.kelurahan = document.getElementById('kelurahan').value;
+                    user.jenis_kelamin = document.getElementById('jenis_kelamin').value;
+                    user.tempat_lahir = document.getElementById('tempatLahir').value;
+                    user.tanggal_lahir = document.getElementById('tanggalLahir').value;
+                    user.pekerjaan = document.getElementById('pekerjaan').value;
+                    user.gol_darah = document.getElementById('golDarah').value;
+
+                    
+                    users[index] = user;
+                    localStorage.setItem('User', JSON.stringify(users)); 
+
+            
+                    window.location.href = 'list-pendonor.html';
+                }
+
+            }
+        })
+
+
+
+
+    </script>
+    >
+</body>
+
+</html>

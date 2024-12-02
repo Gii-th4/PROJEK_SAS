@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Pendonor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .table {
+            margin-top: 20px;
+        }
+
+        .btn {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">List Pendonor</h1>
+
+       
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No. Donor</th>
+                    <th>Nama</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Golongan Darah</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="donorTableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        
+        function addDonor(donor) {
+            const donors = JSON.parse(localStorage.getItem('User')) || [];
+
+           
+            if (!donors.some(d => d.id === donor.id)) {
+                donor.tanggalDonor = new Date().toLocaleTimeString();
+                donors.push(donor);
+                localStorage.setItem('User', JSON.stringify(donors));
+            } else {
+                alert('Data donor sudah ada!');
+            }
+        }
+
+        
+        const donors = JSON.parse(localStorage.getItem('User')) || [];
+
+        const tableBody = document.getElementById('donorTableBody');
+
+        tableBody.innerHTML = ''
+
+        donors.forEach((donor, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${donor.nama || ''}</td>
+        <td>${donor.jenis_kelamin || ''}</td>
+        <td>${donor.tanggal_lahir || ''}</td>
+        <td>${donor.gol_darah || ''}</td>
+        <td>
+            <button class="btn btn-warning" onclick="editDonor(${index})">Edit</button>
+            <button class="btn btn-danger" onclick="deleteDonor(${index})">Hapus</button>
+        </td>
+    `;
+            tableBody.appendChild(row);
+        });
+
+        // Fungsi untuk edit donor
+        function editDonor(index) {
+            window.location.href = `edit.html?id=${index}`;
+        }
+
+
+        function deleteDonor(index) {
+            const confirmation = confirm('Apakah Anda yakin ingin menghapus data ini?');
+            if (confirmation) {
+                donors.splice(index, 1); 
+                localStorage.setItem('User', JSON.stringify(donors)); 
+
+    
+                window.location.reload();
+            }
+        }
+
+    </script>
+</body>
+
+</html>
