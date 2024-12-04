@@ -159,28 +159,27 @@
         <script src="js/bootstrap.min.js"></script>
 
         <script>
-            // Halaman lembar-isian.html
+        
             window.onload = function () {
                 const lokasiDonor = localStorage.getItem('lokasiDonor');
                 if (!lokasiDonor) {
-                    // Jika lokasi donor tidak ada, arahkan kembali ke halaman lokasi donor
                     window.location.href = 'lokasi-donor.html';
                 }
             }
             document.getElementById('simpan').addEventListener('click', function (event) {
-                event.preventDefault(); // Mencegah form reload halaman
+                event.preventDefault(); 
 
-                const form = document.querySelector('form'); // Ambil elemen form
-                const inputs = form.querySelectorAll('input[type="radio"]:checked'); // Ambil semua radio yang terpilih
+                const form = document.querySelector('form'); 
+                const inputs = form.querySelectorAll('input[type="radio"]:checked'); 
 
                 const jawaban = {};
                 inputs.forEach((input) => {
-                    jawaban[input.name] = input.value; // Simpan nama pertanyaan dan nilai jawaban
+                    jawaban[input.name] = input.value; 
                 });
 
-                // Cek jika ada jawaban yang disimpan
+                
                 if (Object.keys(jawaban).length > 0) {
-                    // Simpan ke localStorage
+                    
                     localStorage.setItem('jawabanDonor', JSON.stringify(jawaban));
 
                     window.location.href = "portal.html";
@@ -191,8 +190,8 @@
                     localStorage.removeItem('lokasiDonor');
                     localStorage.removeItem('jawabanDonor');
 
-                    // Mengarahkan pengguna kembali ke halaman portal
-                    window.location.href = "lokasi-donor.html"; // Ubah sesuai dengan nama halaman lokasi donor
+                  
+                    window.location.href = "lokasi-donor.html"; 
                 });
             });
 

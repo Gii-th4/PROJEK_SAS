@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stok Darah</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #9f1c1c;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      margin-bottom: 30px;
+    }
+
+    .table {
+      margin-top: 30px;
+      background-color: #fff;
+      color: #000;
+    }
+
+    .table th,
+    .table td {
+      text-align: center;
+    }
+
+    .table th {
+      background-color: #ff4d4d;
+      color: #fff;
+    }
+
+    .table td {
+      background-color: #f8f9fa;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: #f1c6c6;
+    }
+
+    .update-info {
+      font-size: 14px;
+      color: #f9f9f9;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .total-info {
+      margin-top: 30px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .estimate-info {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 border-bottom">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-1" href="#"><span class="text-danger">Darah</span>Peduli</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 text-center">
+          <li class="nav-item">
+            <a class="nav-link " href="beranda.html">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="portal.html">Portal</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 class="text-center text-danger mb-4">Stok Darah Tahun 2024</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Jenis Darah</th>
+          <th>Stok per Tahun</th>
+        </tr>
+      </thead>
+      <tbody id="stok-table">
+        <!-- Data stok akan diisi menggunakan JavaScript -->
+      </tbody>
+    </table>
+
+    <div class="update-info">
+      <p>Data stok ini diperbarui pada: <strong>3 Desember 2024</strong></p>
+    </div>
+
+    <!-- Informasi total dan estimasi kebutuhan darah -->
+    <div class="total-info">
+      <p>Total Stok Darah: <span id="total-stok">0</span> Kantong</p>
+    </div>
+
+    <div class="estimate-info">
+      <p>Estimasi kebutuhan darah untuk 100 pasien: <span id="estimated-need">0</span> Kantong</p>
+    </div>
+  </div>
+
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+    // Data stok darah per jenis
+    const stokData = {
+      A: 120,
+      B: 95,
+      AB: 60,
+      O: 135
+    };
+
+    // Menampilkan data stok darah per jenis
+    const stokTable = document.getElementById("stok-table");
+    let totalStok = 0;
+    
+    for (const jenis in stokData) {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${jenis}</td><td>${stokData[jenis]} Kantong</td>`;
+      stokTable.appendChild(row);
+      totalStok += stokData[jenis]; // Menjumlahkan total stok darah
+    }
+
+    // Menampilkan total stok darah
+    document.getElementById("total-stok").textContent = totalStok;
+
+    // Estimasi kebutuhan darah untuk 100 pasien
+    // Misalnya, setiap pasien membutuhkan rata-rata 1,5 kantong darah
+    const rataRataKebutuhanPerPasien = 1.5;
+    const estimatedNeed = 100 * rataRataKebutuhanPerPasien; // Estimasi untuk 100 pasien
+    document.getElementById("estimated-need").textContent = estimatedNeed.toFixed(2); // Menampilkan estimasi kebutuhan
+  </script>
+</body>
+
+</html>

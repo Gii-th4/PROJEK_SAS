@@ -65,7 +65,10 @@
             <a class="nav-link " href="beranda.html">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="portal.html">Portal</a>
+            <a class="nav-link" href="portal.html">Portal</a>
+          </li>
+          <li class="nav-item d-none" id="out">
+            <a class="nav-link " id="logoutBtn" href="#">Log Out</a>
           </li>
         </ul>
       </div>
@@ -135,6 +138,8 @@
             <label for="phone">Nomor Telepon</label>
             <input type="text" id="phone" class="form-control" readonly>
           </div>
+
+          <button id="closeBtn" class="btn-close">Tutup</button>
         
         </form>
       </div>
@@ -144,7 +149,7 @@
   <script>
     window.onload = function () {
       const Users = JSON.parse(localStorage.getItem('User')) || [];
-      const user = Users[Users.length - 1]; // Ambil data user terakhir yang didaftarkan
+      const user = Users[Users.length - 1]; 
 
       if (user) {
         document.getElementById('nomorDonor').value = user.noDonor;
@@ -166,7 +171,7 @@
         window.location.href = "login.html";
       }
 
-      Document.getElementById('closeBtn').onclick = function () {
+      document.getElementById('closeBtn').onclick = function () {
         window.location.href = 'portal.html';;
       }
     };

@@ -8,6 +8,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: brown;
+        }
+
+        nav {
+            background-color: #fff;
+        }
+
+        nav .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        nav .nav-link {
+            font-size: 1.1rem;
+        }
+
+        .container h1 {
+            color: white;
+        }
+
         .table {
             margin-top: 20px;
         }
@@ -19,84 +39,88 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="text-center mt-5">List Pendonor</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-1" href="#"><span class="text-danger">Admin</span>List</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5 text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Dashbor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="beranda.html">Beta</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-       
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No. Donor</th>
-                    <th>Nama</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Golongan Darah</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="donorTableBody">
-            </tbody>
-        </table>
+    <div class="container">
+        <h1 class="text-center mt-4 mb-5">List Pendonor</h1>
+        <!-- Card Container -->
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No. Donor</th>
+                            <th>Nama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Golongan Darah</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donorTableBody"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script src="js/bootstrap.min.js"></script>
 
     <script>
-        
-        function addDonor(donor) {
-            const donors = JSON.parse(localStorage.getItem('User')) || [];
+        // Ambil data dari localStorage
+        const userData = JSON.parse(localStorage.getItem('User')) || [];
 
-           
-            if (!donors.some(d => d.id === donor.id)) {
-                donor.tanggalDonor = new Date().toLocaleTimeString();
-                donors.push(donor);
-                localStorage.setItem('User', JSON.stringify(donors));
-            } else {
-                alert('Data donor sudah ada!');
-            }
-        }
-
-        
-        const donors = JSON.parse(localStorage.getItem('User')) || [];
-
+        // Tampilkan data donor dalam tabel
         const tableBody = document.getElementById('donorTableBody');
-
-        tableBody.innerHTML = ''
-
-        donors.forEach((donor, index) => {
+        userData.forEach((donor, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-        <td>${index + 1}</td>
-        <td>${donor.nama || ''}</td>
-        <td>${donor.jenis_kelamin || ''}</td>
-        <td>${donor.tanggal_lahir || ''}</td>
-        <td>${donor.gol_darah || ''}</td>
-        <td>
-            <button class="btn btn-warning" onclick="editDonor(${index})">Edit</button>
-            <button class="btn btn-danger" onclick="deleteDonor(${index})">Hapus</button>
-        </td>
-    `;
+            <td>${index + 1}</td>
+            <td>${donor.nama || ''}</td>
+            <td>${donor.jenisKelamin || donor.jenis_kelamin || ''}</td>
+            <td>${donor.tanggalLahir || donor.tanggal_lahir || ''}</td>
+            <td>${donor.golDarah || donor.gol_darah || ''}</td>
+            <td>
+                <button class="btn btn-warning" onclick="editDonor(${index})">Edit</button>
+                <button class="btn btn-danger" onclick="deleteDonor(${index})">Hapus</button>
+            </td>
+        `;
             tableBody.appendChild(row);
         });
 
-        // Fungsi untuk edit donor
+        // Fungsi untuk mengedit donor
         function editDonor(index) {
-            window.location.href = `edit.html?id=${index}`;
+            window.location.href = `edit.html?type=User&id=${index}`;
         }
 
-
+        // Fungsi untuk menghapus donor
         function deleteDonor(index) {
-            const confirmation = confirm('Apakah Anda yakin ingin menghapus data ini?');
+            const confirmation = confirm('Apakah Anda yakin ingin menghapus pendonor ini?');
             if (confirmation) {
-                donors.splice(index, 1); 
-                localStorage.setItem('User', JSON.stringify(donors)); 
-
-    
-                window.location.reload();
+                userData.splice(index, 1); // Hapus data dari array
+                localStorage.setItem('User', JSON.stringify(userData)); // Simpan kembali ke localStorage
+                window.location.reload(); // Refresh halaman
             }
         }
-
     </script>
+
 </body>
 
 </html>

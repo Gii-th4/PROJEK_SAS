@@ -99,7 +99,7 @@
     }
     .hero-contain button{
       display: inline-block;
-      background-color: #ff4500;
+      background-color: gray;
       color: #fff;
       padding: 12px  24px;
       border-radius: 5px;
@@ -110,7 +110,7 @@
     }
 
     .hero-contain button:hover{
-      background-color: #ff6347;
+      background-color: grey;
       transform: scale(1.1);
     }
 
@@ -127,61 +127,9 @@
       border: 1px red;
     }
 
-    @media screen and (max-width: 768px){
-      .heading h1{
-        font-size: 45px;
-        margin-top: 30px;
-      }
-      .hero{
-        margin: 0px;
-      }
-      .contain{
-        width: 100%;
-        flex-direction: column;
-        margin: 0px;
-        padding: 0px 40px;
-        
-      }
-      .hero-contain{
-        width: 100%;
-        margin: 35px  0px;
-        
-      }
-      .hero-contain h2{
-        font-size: 30px;
-      }
-      .hero-contain p{
-        font-size: 18px;
-        margin-bottom: 20px;
-      }
-      .hero-contain button{
-        font-size: 16px;
-        padding: 8px 16px;
-      }
-      .hero-image{
-        width: 100%;
-      }
-    }
-    @keyframes fadeInUp{
-      0%{
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      100%{
-        opacity: 1;
-        transform: translateY(0px);
-      }
-    }
-    @keyframes fadeInRight{
-      0%{
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      100%{
-        opacity: 1;
-        transform: translateX(0px);
-      }
-    }
+    
+
+  
   </style>
 </head>
 
@@ -355,36 +303,35 @@
 
 
   <script>
-    // Menyimpan elemen-elemen yang digunakan dalam navigasi
+                                                                                                
     const navLogin = document.getElementById('login-nav');
     const navLogout = document.getElementById('logoutBtn');
     const statusLogin = JSON.parse(localStorage.getItem("SESSION_ID")) ?? false;
 
-    // Mengatur tampilan tombol Login dan Log Out berdasarkan status login
+                                                                                                
     if (!statusLogin) {
-      navLogin.innerHTML = "Login"; // Menampilkan Login jika pengguna belum login
-      navLogin.setAttribute('href', 'login.html'); // Mengarahkan ke halaman login
+      navLogin.innerHTML = "Login";                                                                                                                     // Login jika pengguna belum login
+      navLogin.setAttribute('href', 'login.html');                                                                                                      // kehalaman login
       document.getElementById('out').classList.add('d-none')
     } else {
-      navLogin.innerHTML = "Portal"; // Menampilkan Portal jika pengguna sudah login
-      navLogin.setAttribute('href', 'portal.html'); // Mengarahkan ke halaman portal
+      navLogin.innerHTML = "Portal";                                                                                                                    // login = portal = login
+      navLogin.setAttribute('href', 'portal.html');                                                                                                     // ke halaman portal
      document.getElementById('out').classList.remove('d-none')
     }
 
-    // Event listener untuk tombol Log Out
     navLogout.addEventListener('click', function () {
-      // Menghapus data yang terkait dengan pengguna dari localStorage
+                                                                                                     
       localStorage.removeItem('lokasiDonor');
       localStorage.removeItem('jawabanDonor');
-      localStorage.removeItem('User'); // Menghapus status login dari localStorage
+      localStorage.removeItem('User');                                                                                                                  // hapus login dari localStorage
 
-      // Mengubah tampilan navigasi setelah log out
-      navLogin.innerHTML = "Login"; // Mengubah Portal kembali menjadi Login
-      navLogin.setAttribute('href', 'login.html'); // Tombol Login akan mengarah ke halaman login
-      navLogout.style.display = 'none'; // Menyembunyikan tombol Log Out setelah logout
+  
+      navLogin.innerHTML = "Login";                                                                                                                     //  Portal = Login
+      navLogin.setAttribute('href', 'login.html');                                                                                                      // Tombol Login akan mengarah ke halaman login
+      navLogout.style.display = 'none';                                                                                                                 // Menyembunyikan tombol Log Out setelah logout
 
-      // Menyimpan status login sebagai false
-      localStorage.setItem("SESSION_ID", JSON.stringify(false)); // Menyimpan status login sebagai false
+     
+      localStorage.setItem("SESSION_ID", JSON.stringify(false));                                                                                        // Menyimpan status login sebagai false
     });
 
 

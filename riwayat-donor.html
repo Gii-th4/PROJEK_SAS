@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Riwayat Donor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #9f1c1c;
+            color: #fff;
+        }
+
+        .riwayat-container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .riwayat-item {
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .riwayat-item h3 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .riwayat-item p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .riwayat-item .status {
+            font-weight: bold;
+            color: green;
+        }
+
+        .text-muted {
+            color: #f8f9fa;
+        }
+
+        .btn-link {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Riwayat Donor</h1>
+        <div id="riwayatContainer" class="riwayat-container"></div>
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan data riwayat donor dari localStorage
+        function tampilkanRiwayatDonor() {
+            const lokasiDonor = localStorage.getItem('lokasiDonor');
+            const tanggalPendaftaran = localStorage.getItem('tanggalPendaftaran');
+            const riwayatContainer = document.getElementById('riwayatContainer');
+
+            if (!lokasiDonor) {
+                riwayatContainer.innerHTML = 
+                    <div class="text-center">
+                        <p class="text-muted">Belum ada riwayat donor.</p>
+                        <p>Kamu Belum Memiliki Jadwal Donor? <a href="lokasi-donor.html" class="btn-link">Pilih lokasi donor!</a></p>
+                    </div>
+                ;
+                return;
+            }
+            
+            console.log('Lokasi Donor:', lokasiDonor);
+            console.log('Tanggal Pendaftaran:', tanggalPendaftaran);
+
+            
+            riwayatContainer.innerHTML = 
+                <div class="card riwayat-item">
+                    <h3> ${lokasiDonor}</h3>
+                    <p><strong>Tanggal Pendaftaran:</strong> ${tanggalPendaftaran || 'Tanggal Tidak Tersedia'}</p>
+                    <p class="status"><strong>Status:</strong> Donor Berhasil</p>
+                </div>
+            ;
+        }
+
+        tampilkanRiwayatDonor();
+    </script>
+</body>
+
+</html>

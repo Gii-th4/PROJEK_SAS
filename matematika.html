@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribusi Bingkisan Pendonor</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #9f1c1c;
+            color: #fff;
+            padding: 30px;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .result {
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .bingkisan-info {
+            background-color: #fff;
+            color: #000;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .total-info {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center text-danger mb-4">Distribusi Bingkisan Pendonor Darah</h2>
+
+        <!-- Menampilkan informasi jumlah bingkisan yang tersedia -->
+        <div class="bingkisan-info">
+            <p><strong>Harga per Bingkisan:</strong> Rp 10.000</p>
+        </div>
+
+        <form id="bingkisan-form">
+            <div class="mb-3">
+                <label for="donor" class="form-label">Jumlah Pendonor</label>
+                <input type="number" class="form-control" id="donor" placeholder="Masukkan jumlah pendonor"
+                    required>
+            </div>
+            <button type="submit" class="btn btn-light w-100">Hitung Bingkisan yang Diberikan</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;">
+            <h3>Hasil Distribusi Bingkisan</h3>
+            <p>Jumlah Pendonor yang Donor: <strong id="jmldonor"></strong> orang</p>
+            <p>Jumlah Bingkisan yang Diberikan: <strong id="beri-bingkisan"></strong> bingkisan</p>
+            <p>Total Biaya Bingkisan: Rp <strong id="total-perbingkis"></strong></p>
+        </div>
+
+        <div class="total-info">
+            <h4>Total Pengeluaran Bingkisan adalah:</h4>
+            <p id="total-bulan"></p>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        // Harga per bingkisan
+        const hargaBingkisan = 10000;
+        let pengeluaranPerHari = []; 
+        let totalPengeluaranBulanan = 0;
+
+        document.getElementById("bingkisan-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const jumlahPendonor = parseInt(document.getElementById("donor").value) || 0;
+            const bingkisanDiberikan = jumlahPendonor;
+            const totalBiaya = bingkisanDiberikan * hargaBingkisan;
+            pengeluaranPerHari.push(totalBiaya);
+            totalPengeluaranBulanan = pengeluaranPerHari.reduce((acc, curr) => acc + curr, 0);
+
+            // Menampilkan hasil
+            document.getElementById("jmldonor").textContent = jumlahPendonor;
+            document.getElementById("beri-bingkisan").textContent = bingkisanDiberikan;
+            document.getElementById("total-perbingkis").textContent = totalBiaya.toLocaleString();
+
+         
+            document.getElementById("result").style.display = "block";
+            document.getElementById("total-bulan").textContent = `Rp ${totalPengeluaranBulanan.toLocaleString()}`;
+
+            document.getElementById("donor").value = '';
+        });
+    </script>
+</body>
+
+</html>
