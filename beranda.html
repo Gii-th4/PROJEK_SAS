@@ -310,12 +310,12 @@
 
                                                                                                 
     if (!statusLogin) {
-      navLogin.innerHTML = "Login";                                                                                                                     // Login jika pengguna belum login
-      navLogin.setAttribute('href', 'login.html');                                                                                                      // kehalaman login
+      navLogin.innerHTML = "Login";                            // Login jika pengguna belum login
+      navLogin.setAttribute('href', 'login.html');             // kehalaman login
       document.getElementById('out').classList.add('d-none')
     } else {
-      navLogin.innerHTML = "Portal";                                                                                                                    // login = portal = login
-      navLogin.setAttribute('href', 'portal.html');                                                                                                     // ke halaman portal
+      navLogin.innerHTML = "Portal";                           // login = portal = login
+      navLogin.setAttribute('href', 'portal.html');            // ke halaman portal
      document.getElementById('out').classList.remove('d-none')
     }
 
@@ -323,15 +323,16 @@
                                                                                                      
       localStorage.removeItem('lokasiDonor');
       localStorage.removeItem('jawabanDonor');
-      localStorage.removeItem('User');                                                                                                                  // hapus login dari localStorage
+      localStorage.removeItem('User');                      
 
   
-      navLogin.innerHTML = "Login";                                                                                                                     //  Portal = Login
-      navLogin.setAttribute('href', 'login.html');                                                                                                      // Tombol Login akan mengarah ke halaman login
-      navLogout.style.display = 'none';                                                                                                                 // Menyembunyikan tombol Log Out setelah logout
+      navLogin.innerHTML = "Login";                            //  Portal = Login
+      navLogin.setAttribute('href', 'login.html');             // Tombol Login = login
+      navLogout.style.display = 'none';                        // tombol Log Out setelah logout = HILANG
 
-     
-      localStorage.setItem("SESSION_ID", JSON.stringify(false));                                                                                        // Menyimpan status login sebagai false
+            
+      // Menyimpan status login sebagai false
+      localStorage.setItem("SESSION_ID", JSON.stringify(false))
     });
 
 

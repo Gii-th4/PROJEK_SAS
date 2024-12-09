@@ -165,13 +165,19 @@
 
     <script src="js/bootstrap.min.js"></script>
     <script>
+        //Mambil parameter query string dari URL
         const urlParams = new URLSearchParams(window.location.search);
+        //nilai parameter "id" dari URL
         const index = urlParams.get('id');
+        //ambil data dari ls
         const data = JSON.parse(localStorage.getItem('User')) || [];
 
+        //jika data ada, index no null, dan ada dalam rentang index array
         if (data.length > 0 && index !== null && index >= 0 && index < data.length) {
+            //ambil data pendonor berdasarkan index dari parameter
             const donor = data[index];
 
+            //isi elemen input form dengan data pendonor yang ditemukan
             document.getElementById('nama').value = donor.nama || '';
             document.getElementById('nik').value = donor.nik || '';
             document.getElementById('email').value = donor.email || '';
@@ -190,9 +196,12 @@
         document.getElementById('simpan').addEventListener('click', function (e) {
             e.preventDefault();
 
+            //cek kembali data ada dan index valid
             if (data.length > 0 && index !== null && index >= 0 && index < data.length) {
+                //ambil data pendonor berdasarkan index
                 const donor = data[index];
 
+                //memperbarui data dengan nilai dari form
                 donor.nama = document.getElementById('nama').value;
                 donor.nik = document.getElementById('nik').value;
                 donor.email = document.getElementById('email').value;
@@ -207,6 +216,7 @@
                 donor.pekerjaan = document.getElementById('pekerjaan').value;
                 donor.gol_darah = document.getElementById('golDarah').value;
 
+                //simpan kembali data ke ls
                 localStorage.setItem('User', JSON.stringify(data));
                 alert('Data telah diperbarui.');
                 window.location.href = 'list-pendonor.html';

@@ -161,7 +161,9 @@
         <script>
         
             window.onload = function () {
+                //ambil data lokasi donor dari ls
                 const lokasiDonor = localStorage.getItem('lokasiDonor');
+                //jika null,ke halaman lokasi donor
                 if (!lokasiDonor) {
                     window.location.href = 'lokasi-donor.html';
                 }
@@ -170,23 +172,26 @@
                 event.preventDefault(); 
 
                 const form = document.querySelector('form'); 
+                //Mengambil semua input radio yang dipilih (yang di-check)
                 const inputs = form.querySelectorAll('input[type="radio"]:checked'); 
 
+                //buat objek untuk nyimpan jawaban pendonor
                 const jawaban = {};
+                //isi objek jawaban dengan pasangan nama input dan nilai yang dipilih
                 inputs.forEach((input) => {
                     jawaban[input.name] = input.value; 
                 });
 
-                
+                //cekk adakah jawbaan yg diisinya
                 if (Object.keys(jawaban).length > 0) {
-                    
+                    //simpan jawbaan ke ls dalam JSON
                     localStorage.setItem('jawabanDonor', JSON.stringify(jawaban));
 
                     window.location.href = "portal.html";
                 }
 
                 document.getElementById('batal').addEventListener('click', function () {
-                    // Menghapus jawaban dari localStorage
+                    // Menghapus jawaban &lokasi dari localStorage
                     localStorage.removeItem('lokasiDonor');
                     localStorage.removeItem('jawabanDonor');
 

@@ -257,19 +257,25 @@
   <script src="js/bootstrap.min.js"></script>
   <script>
 
+    //cek status login berdasarkan dt yg tlh tersimpan di localStorage
     const statusLogin =
       JSON.parse(localStorage.getItem("SESSION_ID")) ?? false;
     if (statusLogin) {
       window.location.href = "beranda.html";
     }
 
+    //ambil data user di localStorage/buat array kosong jika belum ada data
     const User = JSON.parse(localStorage.getItem('user')) || [];
     document.getElementById('simpan').addEventListener('click', function (event) {
-      event.preventDefault();
-      
+      event.preventDefault(); // cegah ngirim form secara default
+
+    //nomor donor acak 
       const nomorDonor = Math.floor(1000000 + Math.random()*9000000);
       
+    //ambil id terakhir dari array User
       const id = User[User.length - 1]?.id + 1 || 1;
+
+    //ambil value dari inputan berdasarkan idny
       const nama = document.getElementById('nama').value;
       const nik = document.getElementById('nik').value;
       const alamat = document.getElementById('alamat').value;
@@ -286,14 +292,17 @@
       const kata_sandi = document.getElementById('kataSandi').value;
       const konfirmasi_kata_sandi = document.getElementById('konfirSandi').value;
 
+
+      //cek pass dengan konfirmasi pass
       if (kata_sandi !== konfirmasi_kata_sandi) {
         alert('Password Tidak Sama!');
         return;
       }
-
+      
+      //buat objek user baru dg data yg diambil dari form
       const simpanUser = {
-        id,
-        noDonor: nomorDonor,
+        id, //id usr
+        noDonor: nomorDonor, //no donor acak
         nama,
         nik,
         alamat,
@@ -311,8 +320,11 @@
         role : 'User'
       };
 
+      //tambah objek baru ke array namanya user
       User.push(simpanUser);
 
+
+      //simpan di ls
       localStorage.setItem('User', JSON.stringify(User));
 
   
@@ -320,11 +332,10 @@
       document.getElementById('nomorDonorDisplay').textContent = nomorDonor;
       document.getElementById('kataSandiDisplay').textContent = document.getElementById('kataSandi').value;
 
-      // modal
       const modal = new bootstrap.Modal(document.getElementById('modalSukses'));
       modal.show();
 
-      //arahkan ke halaman login
+      //halaman login
       document.querySelector('.btn-primary').addEventListener('click', function () {
         window.location.href = "login.html";
       });

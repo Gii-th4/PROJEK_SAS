@@ -235,22 +235,25 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
-      const statusLogin =
+      const statusLogin = //ambil status login dari ls SESSION ID
         JSON.parse(localStorage.getItem("SESSION_ID")) ?? false;
       if (statusLogin) {
         window.location.href = "beranda.html";
       }
 
+      //ambil data user di ls
       const User = JSON.parse(localStorage.getItem("User")) || [];
 
       document
         .getElementById("login")
         .addEventListener("click", function (event) {
           event.preventDefault();
-
+          
+          // AMBIL  Input Nomor Donor dan Kata Sandi
           const nomorDonor = document.getElementById("noDonor").value;
           const kataSandi = document.getElementById("password").value;
 
+          //cari pendonor berdasarkan no don
           const findDonorId = User.find((User) => User.noDonor == nomorDonor);
 
           if (findDonorId && findDonorId.password == kataSandi) {

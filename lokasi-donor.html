@@ -160,15 +160,25 @@
     </section>
 
     <script>
+      //pilih lok donor
       function pilihLokasi(button) {
+        //mendapatkan tanggal live
         const Time = new Date().toISOString().split("T")[0];
+       //mendapatkan semua elemen infor card
         const cards = document.querySelectorAll(".info-card");
+        //hapus class selected - infor card
         cards.forEach((card) => card.classList.remove("selected"));
+       //menemukan kartu yang paling dekat dengan tombol yang ditekan
         const card = button.closest(".info-card");
+        //nambahkan class "selected" pada kartu yang dipilih
         card.classList.add("selected");
+        //ambil teks card title (lokasi donor)
         const lokasi = card.querySelector(".card-title").textContent;
+        //lok donor yg dipilih ke ls
         localStorage.setItem("lokasiDonor", lokasi);
+        //sv tnggal daftar ke ls
         localStorage.setItem('tanggalPendaftaran',Time);
+        //tampilan lok donor yg dipilih
         console.log("Lokasi Donor yang dipilih: " + lokasi);
         window.location.href = "lembar-isian.html";
       }

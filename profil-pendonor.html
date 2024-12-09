@@ -148,9 +148,12 @@
 
   <script>
     window.onload = function () {
+      //ambil data pendonor dari ls
       const Users = JSON.parse(localStorage.getItem('User')) || [];
+      //ambil data pendonor terakhir dari array 
       const user = Users[Users.length - 1]; 
 
+      //cek datanya
       if (user) {
         document.getElementById('nomorDonor').value = user.noDonor;
         document.getElementById('nama').value = user.nama;

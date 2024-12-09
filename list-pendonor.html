@@ -84,13 +84,14 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script>
-        // Ambil data dari localStorage
+        // Ambil data dari ls
         const userData = JSON.parse(localStorage.getItem('User')) || [];
 
-        // Tampilkan data donor dalam tabel
+        //mengambil elemen tabel tuk data yang akan ditampilkan
         const tableBody = document.getElementById('donorTableBody');
         userData.forEach((donor, index) => {
-            const row = document.createElement('tr');
+            const row = document.createElement('tr'); //Buat Baris Baru untuk Setiap Data Pendonor
+            //isi baris dg data donor
             row.innerHTML = `
             <td>${index + 1}</td>
             <td>${donor.nama || ''}</td>
@@ -102,21 +103,22 @@
                 <button class="btn btn-danger" onclick="deleteDonor(${index})">Hapus</button>
             </td>
         `;
-            tableBody.appendChild(row);
+            tableBody.appendChild(row); //menamhkan baris ke dalam tabel
         });
 
-        // Fungsi untuk mengedit donor
+        //edit donor
         function editDonor(index) {
             window.location.href = `edit.html?type=User&id=${index}`;
         }
 
-        // Fungsi untuk menghapus donor
+        // hapus donor
         function deleteDonor(index) {
             const confirmation = confirm('Apakah Anda yakin ingin menghapus pendonor ini?');
+            //Hapus elemen array userData sesuai dengan indeks (index)
             if (confirmation) {
-                userData.splice(index, 1); // Hapus data dari array
-                localStorage.setItem('User', JSON.stringify(userData)); // Simpan kembali ke localStorage
-                window.location.reload(); // Refresh halaman
+                userData.splice(index, 1); 
+                localStorage.setItem('User', JSON.stringify(userData)); 
+                window.location.reload();  
             }
         }
     </script>

@@ -78,12 +78,16 @@
     </div>
 
     <script>
-        // Fungsi untuk menampilkan data riwayat donor dari localStorage
+        // tampiln data riwayat donor dari ls
         function tampilkanRiwayatDonor() {
+            //ambil data lok di ls
             const lokasiDonor = localStorage.getItem('lokasiDonor');
+           //ambil data tanggal di ls
             const tanggalPendaftaran = localStorage.getItem('tanggalPendaftaran');
+            //mendapatkan element temoat menmapilkan riwayat donor
             const riwayatContainer = document.getElementById('riwayatContainer');
 
+            //cek data lok tersedia/ga
             if (!lokasiDonor) {
                 riwayatContainer.innerHTML = 
                     <div class="text-center">
@@ -93,11 +97,11 @@
                 ;
                 return;
             }
-            
+            //tampilan infor lok dan tanggal
             console.log('Lokasi Donor:', lokasiDonor);
             console.log('Tanggal Pendaftaran:', tanggalPendaftaran);
 
-            
+            //jika data lok ada,menampilkan riwayat donor
             riwayatContainer.innerHTML = 
                 <div class="card riwayat-item">
                     <h3> ${lokasiDonor}</h3>

@@ -184,26 +184,29 @@
     </div>
 
     <script>
-      // Menampilkan lokasi UDD di elemen dengan ID lokasiUDD
+      // lokasi UDD di elemen dengan ID lokasiUDD
       const lokasi = localStorage.getItem('lokasiDonor');
+      //ambil data lokasi dari ls
       const tanggalPendaftaran = localStorage.getItem('tanggalPendaftaran');
-      const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
+      //tanggal otomatis
+      const tanggalSekarang = new Date().toISOString().split('T')[0]; 
       const popUp = document.querySelector('.card-body');
 
+      //cek data lokasi dan tanggal 
       if(!lokasi && !tanggalPendaftaran){
-        popUp.classList.add('hide');  
+        popUp.classList.add('hide');  //notifikasi disembunyikan jika data null 
       } else {
-        popUp.classList.remove('hide');
+        popUp.classList.remove('hide'); //ditampilkan jika data ada
       }
 
-
+      //cek lokasi dan taggal daftar sesuai dengan tanggal live
       if (lokasi && tanggalPendaftaran == tanggalSekarang) {
         const Lokasi = document.getElementById('lokasiUDD');
-        Lokasi.textContent = lokasi;
-        // Jika lokasi donor dan tanggal pendaftaran valid, tampilkan lokasi
+        Lokasi.textContent = lokasi; //tampilan lokasi jika valid
+        
         
       } else {
-        // Jika tidak valid, hapus data lama dan tampilkan tanda '-'
+        // hapus data lama 
         localStorage.removeItem('lokasiDonor');
         localStorage.removeItem('tanggalPendaftaran');
         document.getElementById('lokasiUDD').textContent = '-';
@@ -211,21 +214,23 @@
 
       function formatTanggal() {
         const now = new Date();
-        const hari = now.toLocaleString('id-ID', { weekday: 'long' });
+        const hari = now.toLocaleString('id-ID', { weekday: 'long' }); // Nama hari dalam bahasa Indonesia
         const tanggal = now.getDate();
-        const bulan = now.toLocaleString('id-ID', { month: 'long' });
+        const bulan = now.toLocaleString('id-ID', { month: 'long' }); // Nama bulan dalam bahasa Indonesia
         const tahun = now.getFullYear();
         return `${hari}, ${tanggal} ${bulan} ${tahun}`;
       }
 
+
+      //tampilan jadwal sesuai data
       function tampilkanJadwal() {
-        // Menampilkan lokasi UDD di elemen dengan ID lokasiUDD
-        const lokasi = localStorage.getItem('lokasiDonor');
-        const tanggalPendaftaran = localStorage.getItem('tanggalPendaftaran');
-        const tanggalSekarang = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
+        const lokasi = localStorage.getItem('lokasiDonor'); //ambil data lokasi
+        const tanggalPendaftaran = localStorage.getItem('tanggalPendaftaran'); //ambil tanggal daftar
+        const tanggalSekarang = new Date().toISOString().split('T')[0]; //tanggal sekarang
 
         if (lokasi && tanggalPendaftaran === tanggalSekarang) {
-          // Jika lokasi donor dan tanggal pendaftaran valid, tampilkan lokasi
+
+          // Jika lokasi donor dan tanggal pendaftaran valid, lokasi tampil
           document.getElementById('lokasiUDD').textContent = lokasi;
         } else {
           // Jika tidak valid, hapus data lama dan tampilkan tanda '-'
@@ -253,7 +258,7 @@
           const jadwalContainer = document.getElementById('jadwalDonorContainer');
 
           if (!lokasi || tanggalPendaftaran !== tanggalSekarang) {
-          
+          //jika data tidak valid
             jadwalContainer.innerHTML = `
         <p>Kamu Belum Memiliki Jadwal Donor? 
           <a href="lokasi-donor.html" style="color: #007bff; text-decoration: underline;">Pilih lokasi donor!</a>
@@ -261,7 +266,7 @@
       `;
           }
 
-          // Format jadwal jika data valid
+          //jika data valid
           const tanggal = formatTanggal();
           const jamAwal = "08:00";
           const jamAkhir = "09:00";
@@ -272,17 +277,17 @@
           jadwalContainer.innerHTML = jadwalHTML;
         }
 
-        // Fungsi untuk membuka pop-up konfirmasi
+        //  membuka pop-up konfirmasi
         function bukaPopup() {
           document.getElementById('popup').style.display = 'flex';
         }
 
-        // Menangani aksi tombol "Tidak" (menutup popup)
+        // aksi tombol Tidak (menutup popup)
         document.getElementById('btnTidak').onclick = function () {
           document.getElementById('popup').style.display = 'none';
         };
 
-        // Menangani aksi tombol "Ya" (menghapus jadwal dan menutup popup)
+        // aksi tombol "Ya" (menghapus jadwal dan menutup popup)
         document.getElementById('btnYa').onclick = function () {
           const jadwalContainer = document.getElementById('jadwalDonorContainer');
           jadwalContainer.innerHTML = ''; // Menghapus jadwal donor

@@ -106,19 +106,32 @@
           </div>
         </div>
         
+        <!-- <a href="jadwal-donor.html"><div class="col-md-4">
+          <div class="card info-card p-4">
+            <div class="info-icon mb-3">
+              <i class="bi bi-heart-pulse"></i>
+            </div>
+            <span style="color: red;">JADWAL DONOR</span>
+          </div>
+        </div>
+      </a> -->
+        
       </div>
     </div>
   </section>
 
   <script src="js/bootstrap.min.js">
+    //anchor ke jadwal-donor
     const jadwalDonorLink = document.querySelector('a[href="jadwal-donor.html"]');
 
     jadwalDonorLink.addEventListener('click', function (event) {
+      //ambil data lokasi di ls
       const lokasiDonor = localStorage.getItem('lokasiDonor');
 
-      
+      //cek udah pilih lok /belum
       if (!lokasiDonor) {
-        event.preventDefault(); 
+        
+        event.preventDefault(); //menghindari navigasi ke jadwal-donor.html
         alert("Belum ada lokasi donor yang dipilih. Silakan pilih lokasi donor terlebih dahulu.");
         window.location.href = "lokasi-donor.html";
       }

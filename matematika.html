@@ -37,6 +37,27 @@
             font-size: 18px;
             margin-top: 20px;
         }
+
+        table {
+            margin-top: 20px;
+            background-color: #fff;
+            color: #000;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #000;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4a4a4;
+        }
     </style>
 </head>
 
@@ -51,52 +72,91 @@
 
         <form id="bingkisan-form">
             <div class="mb-3">
+                <label for="tanggal" class="form-label">Tanggal Distribusi</label>
+                <input type="date" class="form-control" id="tanggal" required>
+            </div>
+            <div class="mb-3">
                 <label for="donor" class="form-label">Jumlah Pendonor</label>
-                <input type="number" class="form-control" id="donor" placeholder="Masukkan jumlah pendonor"
-                    required>
+                <input type="number" class="form-control" id="donor" placeholder="Masukkan jumlah pendonor" min="0" required>
             </div>
             <button type="submit" class="btn btn-light w-100">Hitung Bingkisan yang Diberikan</button>
         </form>
 
         <div id="result" class="result" style="display: none;">
             <h3>Hasil Distribusi Bingkisan</h3>
-            <p>Jumlah Pendonor yang Donor: <strong id="jmldonor"></strong> orang</p>
-            <p>Jumlah Bingkisan yang Diberikan: <strong id="beri-bingkisan"></strong> bingkisan</p>
-            <p>Total Biaya Bingkisan: Rp <strong id="total-perbingkis"></strong></p>
+            <p><strong>Jumlah Pendonor:</strong> <span id="jmldonor"></span> orang</p>
+            <p><strong>Biaya Hari Ini:</strong> Rp <span id="biaya-harian"></span></p>
         </div>
 
+        <h4 class="mt-4">Rincian Distribusi Harian</h4>
+        <table id="rincian-tabel">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Jumlah Pendonor</th>
+                    <th>Biaya Harian</th>
+                    <th>Total Akumulasi</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
         <div class="total-info">
-            <h4>Total Pengeluaran Bingkisan adalah:</h4>
-            <p id="total-bulan"></p>
+            <h4>Total Pengeluaran Bingkisan Bulanan:</h4>
+            <p id="total-bulan">Rp 0</p>
         </div>
     </div>
 
     <script src="js/bootstrap.min.js"></script>
     <script>
-        // Harga per bingkisan
-        const hargaBingkisan = 10000;
-        let pengeluaranPerHari = []; 
-        let totalPengeluaranBulanan = 0;
+        
+        const hargaBingkisan = 10000; //var
+        let pengeluaranPerHari = []; //arry simpann rinncian distrib harian
+        let totalPengeluaranBulanan = 0; // var total bulanan
+
+       
+        const tabelBody = document.querySelector("#rincian-tabel tbody");
+        const totalBulananEl = document.getElementById("total-bulan");
 
         document.getElementById("bingkisan-form").addEventListener("submit", function (event) {
             event.preventDefault();
 
+            // Ambil data dari form
+            const tanggal = document.getElementById("tanggal").value;
             const jumlahPendonor = parseInt(document.getElementById("donor").value) || 0;
-            const bingkisanDiberikan = jumlahPendonor;
-            const totalBiaya = bingkisanDiberikan * hargaBingkisan;
-            pengeluaranPerHari.push(totalBiaya);
-            totalPengeluaranBulanan = pengeluaranPerHari.reduce((acc, curr) => acc + curr, 0);
 
-            // Menampilkan hasil
+            if (jumlahPendonor < 0) {
+                alert("Jumlah pendonor tidak boleh negatif!");
+                return;
+            }
+
+            const biayaHarian = jumlahPendonor * hargaBingkisan;
+
+            // Tambah data  ke arry pengeluaran
+            pengeluaranPerHari.push({ tanggal, jumlahPendonor, biayaHarian });
+            totalPengeluaranBulanan += biayaHarian;
+
+            // hasil distribusi terbaru
             document.getElementById("jmldonor").textContent = jumlahPendonor;
-            document.getElementById("beri-bingkisan").textContent = bingkisanDiberikan;
-            document.getElementById("total-perbingkis").textContent = totalBiaya.toLocaleString();
-
-         
+            document.getElementById("biaya-harian").textContent = biayaHarian.toLocaleString();
             document.getElementById("result").style.display = "block";
-            document.getElementById("total-bulan").textContent = `Rp ${totalPengeluaranBulanan.toLocaleString()}`;
 
-            document.getElementById("donor").value = '';
+            // Utambah data ke tabel rincian
+            const row = tabelBody.insertRow();
+            row.innerHTML = `
+                <td>${pengeluaranPerHari.length}</td>
+                <td>${tanggal}</td>
+                <td>${jumlahPendonor}</td>
+                <td>Rp ${biayaHarian.toLocaleString()}</td>
+                <td>Rp ${totalPengeluaranBulanan.toLocaleString()}</td>
+            `;
+
+            // Update total bulanan
+            totalBulananEl.textContent = `Rp ${totalPengeluaranBulanan.toLocaleString()}`;
+
+            document.getElementById("bingkisan-form").reset();
         });
     </script>
 </body>
